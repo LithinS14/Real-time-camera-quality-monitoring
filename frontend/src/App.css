@@ -1,0 +1,366 @@
+/* Global Reset and Base Styles */
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Crucial for no scrolling */
+  font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Modern font stack */
+  color: #e0e0e0; /* Light text for dark background */
+  background: linear-gradient(135deg, #1a1a2e, #0f0f1a); /* Subtle gradient background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px; /* Slightly smaller base font size for compactness */
+}
+
+/* App Wrapper - Centers content and ensures full viewport coverage */
+.app-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  padding: 10px; /* Reduced padding around the card */
+  box-sizing: border-box;
+}
+
+/* Main Content Card - The central hub of the UI */
+.main-content-card {
+  background-color: #22223b; /* Dark blue-purple */
+  border-radius: 15px; /* Slightly smaller radius */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6); /* Deeper shadow */
+  padding: 20px; /* Significantly reduced padding */
+  text-align: center;
+  max-width: 700px; /* Reduced max-width for compactness */
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Reduced spacing between sections */
+  border: 1px solid rgba(100, 100, 150, 0.3); /* Subtle border */
+  /* Crucial for fitting on one page: allow card to shrink, but not overflow */
+  max-height: calc(100vh - 20px); /* 20px for app-wrapper padding */
+  overflow-y: hidden; /* Absolutely no scrolling within the card */
+}
+
+/* Header Section */
+.header-section {
+  margin-bottom: 5px; /* Reduced margin */
+}
+
+.app-title {
+  font-size: 2.8em; /* Significantly smaller title */
+  font-weight: 900;
+  margin-bottom: 5px; /* Reduced margin */
+  background: linear-gradient(45deg, #a855f7, #ec4899); /* Vibrant purple to pink gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+  letter-spacing: -0.02em; /* Tighter letter spacing */
+}
+
+.app-subtitle {
+  font-size: 1em; /* Smaller subtitle */
+  color: #b0b0d0;
+  margin-top: 0;
+  font-weight: 300;
+}
+
+/* Error Message Banner */
+.error-message-banner {
+  background-color: #dc2626; /* Stronger red */
+  color: white;
+  padding: 10px 15px; /* Reduced padding */
+  border-radius: 8px;
+  font-size: 0.9em; /* Smaller font */
+  font-weight: bold;
+  margin-bottom: 15px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Status Section */
+.status-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0; /* Reduced padding */
+  border-bottom: 1px solid rgba(100, 100, 150, 0.2);
+  margin-bottom: 15px; /* Reduced margin */
+  gap: 10px; /* Reduced space */
+}
+
+.status-label {
+  font-size: 1em;
+  font-weight: 600;
+  color: #c0c0e0;
+  margin: 0;
+}
+
+.status-indicator {
+  padding: 8px 15px; /* Reduced padding */
+  border-radius: 20px;
+  font-size: 0.9em; /* Smaller font */
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+}
+
+.status-connected {
+  background-color: #22c55e;
+  color: #1a1a2e;
+}
+
+.status-disconnected {
+  background-color: #ef4444;
+  color: white;
+}
+
+/* Camera Section - Designed to be flexible */
+.camera-section {
+  position: relative;
+  width: 100%;
+  max-width: 600px; /* Further reduced max-width for camera */
+  margin: 0 auto;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  background-color: #000;
+  border-radius: 10px; /* Slightly smaller radius */
+  overflow: hidden;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+  border: 3px solid #5a5a8a; /* Slightly thinner border */
+  flex-grow: 1; /* Allow camera to take available vertical space */
+  min-height: 0; /* Allow flex item to shrink below its content size */
+}
+
+.video-feed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Ensure full video is visible */
+}
+
+/* Warning Overlay */
+.warning-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(239, 68, 68, 0.9);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+  animation: pulse 1.5s infinite alternate ease-in-out;
+  padding: 10px; /* Reduced padding */
+  box-sizing: border-box;
+}
+
+.warning-icon {
+  font-size: 3em; /* Smaller icon */
+  margin-bottom: 10px; /* Reduced margin */
+  line-height: 1;
+}
+
+.warning-text {
+  font-size: 2em; /* Smaller warning text */
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.warning-subtext {
+  font-size: 0.9em; /* Smaller subtext */
+  font-weight: 400;
+  margin-top: 8px; /* Reduced margin */
+  opacity: 0.9;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.01);
+  }
+  100% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+}
+
+/* Scores Section (Flexbox for single line) */
+.scores-section {
+  display: flex; /* Changed to flex */
+  justify-content: space-around; /* Distribute space evenly */
+  align-items: flex-start; /* Align items to the start of the cross axis */
+  gap: 10px; /* Reduced space between score cards */
+  margin-top: 15px; /* Reduced margin */
+  flex-shrink: 0; /* Prevent scores section from shrinking */
+  flex-wrap: nowrap; /* Crucial: Prevent wrapping to new lines */
+}
+
+.score-item {
+  background-color: #333355;
+  border-radius: 10px; /* Smaller radius */
+  padding: 10px; /* Reduced padding for compactness */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  border: 1px solid rgba(100, 100, 150, 0.2);
+  flex-basis: 0; /* Allow items to shrink/grow from 0 */
+  flex-grow: 1; /* Allow items to grow to fill space */
+  flex-shrink: 1; /* Allow items to shrink if needed */
+  min-width: 80px; /* Minimum width to prevent extreme squishing */
+}
+
+.score-item:hover {
+  transform: translateY(-5px); /* Smaller hover effect */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+}
+
+.score-title {
+  font-size: 0.9em; /* Smaller title */
+  font-weight: 700;
+  color: #c0c0e0;
+  margin-bottom: 5px; /* Reduced margin */
+  letter-spacing: 0.02em;
+  white-space: nowrap; /* Prevent title from wrapping */
+}
+
+.score-value {
+  font-size: 2em; /* Smaller score values */
+  font-weight: 900;
+  margin: 0;
+  line-height: 1;
+}
+
+.score-good {
+  color: #4ade80;
+}
+
+.score-bad {
+  color: #f87171;
+}
+
+/* Responsive Adjustments - More aggressive scaling */
+@media (max-width: 768px) {
+  .main-content-card {
+    padding: 15px;
+    gap: 12px;
+    max-width: 95%; /* Allow card to take more width */
+  }
+  .app-title {
+    font-size: 2.2em;
+  }
+  .app-subtitle {
+    font-size: 0.9em;
+  }
+  .status-label,
+  .status-indicator {
+    font-size: 0.9em;
+  }
+  .camera-section {
+    max-width: 100%; /* Allow camera to take full width */
+  }
+  .warning-text {
+    font-size: 1.5em;
+  }
+  .warning-icon {
+    font-size: 2.5em;
+  }
+  .warning-subtext {
+    font-size: 0.8em;
+  }
+  .scores-section {
+    gap: 8px; /* Even smaller gap */
+  }
+  .score-item {
+    padding: 8px; /* Even smaller padding */
+    min-width: 70px; /* Adjust min-width */
+  }
+  .score-title {
+    font-size: 0.8em;
+  }
+  .score-value {
+    font-size: 1.8em;
+  }
+}
+
+@media (max-width: 550px) {
+  /* For smaller tablets and larger phones */
+  .main-content-card {
+    padding: 10px;
+    gap: 10px;
+  }
+  .app-title {
+    font-size: 1.8em;
+  }
+  .app-subtitle {
+    font-size: 0.8em;
+  }
+  .status-label,
+  .status-indicator {
+    font-size: 0.8em;
+    padding: 6px 12px;
+  }
+  .warning-text {
+    font-size: 1.2em;
+  }
+  .warning-icon {
+    font-size: 2em;
+  }
+  .warning-subtext {
+    font-size: 0.7em;
+  }
+  .scores-section {
+    gap: 5px; /* Minimal gap */
+  }
+  .score-item {
+    padding: 6px; /* Minimal padding */
+    min-width: 60px; /* Further reduced min-width */
+  }
+  .score-title {
+    font-size: 0.7em;
+  }
+  .score-value {
+    font-size: 1.5em;
+  }
+}
+
+@media (max-width: 400px) {
+  /* For very small phones */
+  .app-title {
+    font-size: 1.5em;
+  }
+  .app-subtitle {
+    font-size: 0.7em;
+  }
+  .warning-text {
+    font-size: 1em;
+  }
+  .warning-icon {
+    font-size: 1.5em;
+  }
+  .warning-subtext {
+    font-size: 0.6em;
+  }
+  .score-title {
+    font-size: 0.6em;
+  }
+  .score-value {
+    font-size: 1.2em;
+  }
+}
